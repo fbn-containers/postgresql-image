@@ -28,8 +28,7 @@ This repository contains personal configurations to build a PostgreSQL server im
   podman run -d \
     --name my-custom-postgres \
     -p 5432:5432 \
-    -v /path/to/postgresql.conf:/etc/postgresql/postgresql.conf:ro \
-    -v /path/to/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro \
+    -v /path/to/config_dir:/etc/postgresql:ro \
     postgresql:15
   ```
 

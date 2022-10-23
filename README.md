@@ -9,7 +9,29 @@ This repository contains personal configurations to build a PostgreSQL server im
 **References**
 
   - PostgreSQL : https://www.postgresql.org/
-  - Speeding up container image builds with Buildah : https://www.redhat.com/sysadmin/speeding-container-buildah
+
+### Environment Variables
+
+*To be implemented*
+
+### How to use this image ?
+
+* **Start a simple instance**
+
+  ```shell
+  podman run -d --name mypostgres -p 5432:5432 postgresql:15
+  ```
+
+* **Start an instance with custom instance configurations**
+
+  ```shell
+  podman run -d \
+    --name my-custom-postgres \
+    -p 5432:5432 \
+    -v /path/to/postgresql.conf:/etc/postgresql/postgresql.conf \
+    -v /path/to/pg_hba.conf:/etc/postgresql/pg_hba.conf \
+    postgresql:15
+  ```
 
 ### How to build this image ?
 
@@ -31,3 +53,10 @@ This repository contains personal configurations to build a PostgreSQL server im
   ```shell
   buildah bud -v ${BUILDAH_DNF_CACHE}/f36:/var/cache/dnf:O -t postgresql:15 -f Containerfile .
   ```
+
+* **Build an image with a different version of PostgreSQL**
+
+  ```shell
+  buildah bud [options] --build-arg PG_RELEASE=14 --build-arg PG_VERSION=14.5 -t postgresql:14.5 -f Containerfile .
+  ```
+

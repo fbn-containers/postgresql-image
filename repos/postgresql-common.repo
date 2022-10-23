@@ -1,0 +1,5 @@
+[postgresql-common]
+baseurl=https://download.postgresql.org/pub/repos/yum/common/fedora/fedora-$releasever-$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG

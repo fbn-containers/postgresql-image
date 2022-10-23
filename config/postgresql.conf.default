@@ -1,0 +1,64 @@
+# -----------------------------------------------------------------------------------------
+# PostgreSQL configuration
+# -----------------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+# FILE LOCATIONS
+#------------------------------------------------------------------------------
+data_directory  = '/var/lib/postgresql/data'
+hba_file        = '/etc/postgresql/pg_hba.conf'
+
+# - Connection Settings -
+listen_addresses    = '*'
+port                = 5432
+max_connections     = 100
+
+# - Authentication -
+password_encryption = scram-sha-256
+
+#------------------------------------------------------------------------------
+# RESOURCE USAGE (except WAL)
+#------------------------------------------------------------------------------
+
+# - Memory -
+shared_buffers  = 256MB
+temp_buffers    = 8MB
+work_mem        = 4MB
+hash_mem_multiplier = 1.0
+maintenance_work_mem = 64MB
+
+#------------------------------------------------------------------------------
+# WRITE-AHEAD LOG
+#------------------------------------------------------------------------------
+
+# - Settings -
+wal_level = replica
+fsync = on
+wal_sync_method = fdatasync
+wal_compression = off
+wal_buffers = -1
+
+#------------------------------------------------------------------------------
+# REPORTING AND LOGGING
+#------------------------------------------------------------------------------
+
+# - Where to Log -
+log_destination = 'stderr'
+logging_collector = 'off'
+
+#------------------------------------------------------------------------------
+# AUTOVACUUM
+#------------------------------------------------------------------------------
+
+autovacuum = 'on' 
+
+#------------------------------------------------------------------------------
+# CLIENT CONNECTION DEFAULTS
+#------------------------------------------------------------------------------
+
+# - Locale and Formatting -
+client_encoding = 'UTF8'
+lc_messages = 'C.UTF8'
+lc_monetary = 'C.UTF8'
+lc_numeric = 'C.UTF8'  
+lc_time = 'C.UTF8'
